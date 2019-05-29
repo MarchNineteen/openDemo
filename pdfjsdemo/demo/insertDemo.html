@@ -1,0 +1,41 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<script src="../build/pdf.js"></script>
+
+<h1>PDF.js insert example</h1>
+
+<div>
+    <button id="btn" onclick="method1();">隐藏</button>
+    <div class="grid-content bg-purple" id="div" style="height: 660px; width: 100%">
+        <iframe width="50%" height="100%" id="the-canvas" style="border:1px solid black;width:100%;"></iframe>
+    </div>
+</div>
+
+<script src="../build/pdf.js"></script>
+<script src="../build/pdf.worker.js"></script>
+<script>
+    var pdfurl = '/pdfjsdemo/demo/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C(%E7%BB%88%E6%9E%81%E7%89%88).pdf';
+    var url = "http://localhost:63343/pdfjsdemo/web/viewer.html?file=" +  encodeURIComponent(pdfurl);
+    // var url = [[@{/invoicePrint/d?invoiceId}]]+'='+row.invoice_id;
+    document.getElementById('the-canvas').setAttribute('src',url);
+
+    function method1(){
+        var div = document.getElementById("div");
+        var btn = document.getElementById("btn");
+        var flag = div.style.display;
+        if ("none" == flag) {
+            div.style.display = "block";
+            btn.innerText = "隐藏";
+        }
+        else {
+            div.style.display = "none";
+            btn.innerText = "显示";
+        }
+    }
+</script>
+
+<!--pdf源文件跨域问题-->
+<!--/* if (fileOrigin !== viewerOrigin) {-->
+<!--throw new Error('file origin does not match viewer\'s');-->
+<!--}*/-->
